@@ -1,5 +1,9 @@
 import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { ContactCategory } from '@prisma/client';
+
+export enum ContactCategory {
+    GENERAL = 'GENERAL',
+    PERSONAL = 'PERSONAL',
+}
 
 export class CreateContactDto {
     @IsString()
