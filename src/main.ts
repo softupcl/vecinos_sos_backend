@@ -17,6 +17,12 @@ async function bootstrap() {
     }),
   );
 
-  await app.listen(process.env.PORT ?? 3000);
+  // Vercel handles the server start, so we only listen locally
+  if (process.env.NODE_ENV !== 'production') {
+    await app.listen(process.env.PORT ?? 3000);
+  }
+
+  return app.getHttpAdapter().getInstance();
 }
-bootstrap();
+
+export default bootstrap();
