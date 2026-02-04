@@ -2,7 +2,8 @@ import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/co
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateContactDto } from './dto/create-contact.dto';
 import { UpdateContactDto } from './dto/update-contact.dto';
-import { User, ContactCategory, Role } from '@prisma/client';
+import { ContactCategory, Role } from '../common/enums';
+import type { User } from '@prisma/client';
 
 @Injectable()
 export class ContactsService {

@@ -3,7 +3,7 @@ import { EmergenciesService } from './emergencies.service';
 import { CreateEmergencyDto } from './dto/create-emergency.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { GetUser } from '../auth/decorators/get-user.decorator';
-import { User } from '@prisma/client';
+import type { User } from '@prisma/client';
 
 @Controller('emergencies')
 @UseGuards(JwtAuthGuard)

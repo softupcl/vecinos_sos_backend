@@ -1,9 +1,5 @@
 import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-
-export enum ContactCategory {
-    GENERAL = 'GENERAL',
-    PERSONAL = 'PERSONAL',
-}
+import { ContactCategory } from '../../common/enums';
 
 export class CreateContactDto {
     @IsString()

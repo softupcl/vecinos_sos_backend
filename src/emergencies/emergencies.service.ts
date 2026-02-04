@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { NotificationsService } from '../notifications/notifications.service';
 import { CreateEmergencyDto } from './dto/create-emergency.dto';
-import { User } from '@prisma/client';
+import type { User } from '@prisma/client';
 
 @Injectable()
 export class EmergenciesService {
@@ -51,7 +51,7 @@ export class EmergenciesService {
 
         const tokensToNotify: string[] = [];
 
-        neighbors.forEach((neighbor) => {
+        neighbors.forEach((neighbor: { id: string, pushToken: string, lat: number, lng: number, name: string | null }) => {
             const distance = this.getDistanceFromLatLonInKm(
                 lat,
                 lng,
