@@ -3,7 +3,11 @@ import { AppModule } from './app.module';
 
 import { ValidationPipe } from '@nestjs/common';
 
+let cachedApp: any;
+
 async function bootstrap() {
+  if (cachedApp) return cachedApp;
+
   const app = await NestFactory.create(AppModule);
 
   app.setGlobalPrefix('api');
@@ -22,7 +26,14 @@ async function bootstrap() {
     await app.listen(process.env.PORT ?? 3000);
   }
 
-  return app.getHttpAdapter().getInstance();
+  await app.init();
+  cachedApp = app.getHttpAdapter().getInstance();
+  return cachedApp;
 }
 
-export default bootstrap();
+// Exportar el handler para Vercel
+export default async (req: any, res: any) => {
+  const app = await bootstrap();
+  return app(req, res);
+};
+
