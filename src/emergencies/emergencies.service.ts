@@ -30,7 +30,7 @@ export class EmergenciesService {
         this.logger.log(`Emergencia creada por ${sender.name} (${sender.email}) - Tipo: ${type}`);
 
         // 2. Buscar vecinos cercanos con Push Token
-        const RADIUS_KM = 2; // Radio de búsqueda (por ejemplo, 2km)
+        const RADIUS_KM = 100; // Radio de búsqueda (por ejemplo, 100km para pruebas)
 
         // Obtenemos usuarios que tengan token y posición, excluyendo al emisor
         const neighbors = await this.prisma.user.findMany({
@@ -103,6 +103,13 @@ export class EmergenciesService {
             orderBy: {
                 createdAt: 'desc'
             }
+        });
+    }
+
+    async update(id: string, updateEmergencyDto: { status: any }) {
+        return this.prisma.emergency.update({
+            where: { id },
+            data: updateEmergencyDto,
         });
     }
 
