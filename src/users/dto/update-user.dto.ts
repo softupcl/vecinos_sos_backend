@@ -16,4 +16,9 @@ export class UpdateUserDto {
     @IsNumber()
     @IsOptional()
     lng?: number;
+
+    @IsString()
+    @IsOptional()
+    avatar?: string;
+
 }

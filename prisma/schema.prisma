@@ -35,10 +35,12 @@ model User {
   email         String      @unique
   password      String
   name          String?
+  phone         String?
   pushToken     String?
   lat           Float?
   lng           Float?
   role          Role        @default(USER)
+  avatar        String?
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
   
