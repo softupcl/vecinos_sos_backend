@@ -107,6 +107,7 @@ export class EmergenciesService {
     }
 
     async update(id: string, updateEmergencyDto: { status: any }) {
+        this.logger.log(`Actualizando emergencia ${id} con estado: ${updateEmergencyDto.status}`);
         return this.prisma.emergency.update({
             where: { id },
             data: updateEmergencyDto,
