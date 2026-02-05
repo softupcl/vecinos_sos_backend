@@ -23,7 +23,10 @@ async function bootstrap() {
 
   // Vercel handles the server start, so we only listen locally
   if (process.env.NODE_ENV !== 'production') {
-    await app.listen(process.env.PORT ?? 3000);
+    const port = process.env.PORT ?? 3000;
+    await app.listen(port, '0.0.0.0');
+    console.log(`🚀 Backend local corriendo en: http://localhost:${port}/api`);
+    console.log(`📱 Para móvil usa tu IP local: http://TU_IP_LOCAL:${port}/api`);
   }
 
   await app.init();
