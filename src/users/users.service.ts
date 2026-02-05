@@ -7,6 +7,7 @@ export class UsersService {
     constructor(private prisma: PrismaService) { }
 
     async update(id: string, updateUserDto: UpdateUserDto) {
+        console.log(`Actualizando usuario ${id}:`, updateUserDto);
         return this.prisma.user.update({
             where: { id },
             data: updateUserDto,
